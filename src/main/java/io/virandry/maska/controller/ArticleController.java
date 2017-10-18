@@ -1,4 +1,4 @@
-package io.virandry.controller;
+package io.virandry.maska.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import io.virandry.maska.model.Article;
-import io.virandry.service.ArticleService;
+import io.virandry.maska.service.ArticleService;
 
 @Controller
 @RequestMapping("user")

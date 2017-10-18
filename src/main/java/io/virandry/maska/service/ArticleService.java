@@ -1,4 +1,4 @@
-package io.virandry.service;
+package io.virandry.maska.service;
 
 import java.util.List;
 import io.virandry.maska.model.Article;

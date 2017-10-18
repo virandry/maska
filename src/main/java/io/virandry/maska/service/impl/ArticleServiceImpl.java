@@ -1,12 +1,13 @@
-package io.virandry.service.impl;
+package io.virandry.maska.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.virandry.maska.dao.ArticleDAO;
 import io.virandry.maska.model.Article;
-import io.virandry.service.ArticleService;
+import io.virandry.maska.service.ArticleService;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -25,6 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public synchronized boolean addArticle(Article article) {
 		if (articleDAO.articleExists(article.getTitle(), article.getCategory())) {
 			return false;
@@ -35,11 +37,13 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public void updateArticle(Article article) {
 		articleDAO.updateArticle(article);
 	}
 
 	@Override
+	@Transactional
 	public void deleteArticle(int articleId) {
 		articleDAO.deleteArticle(articleId);
 	}

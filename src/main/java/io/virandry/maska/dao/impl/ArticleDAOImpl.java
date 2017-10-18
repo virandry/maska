@@ -2,19 +2,16 @@ package io.virandry.maska.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import io.virandry.maska.dao.AbstractDAO;
 import io.virandry.maska.dao.ArticleDAO;
 import io.virandry.maska.model.Article;
 
 @Component
-public class ArticleDAOImpl implements ArticleDAO {
-	@PersistenceContext
-	private EntityManager entityManager;
-
+public class ArticleDAOImpl extends AbstractDAO implements ArticleDAO {
+	
 	@Override
 	public Article getArticleById(int articleId) {
 		return entityManager.find(Article.class, articleId);

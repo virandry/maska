@@ -1,8 +1,11 @@
 package io.virandry.maska.service;
 
 import java.util.List;
+
+import io.virandry.maska.model.Detail;
 import io.virandry.maska.model.Product;
 import io.virandry.maska.model.ProductFilter;
+import io.virandry.maska.model.Subdetail;
 
 public interface ProductService {
 	List<Product> getAllProducts();
@@ -16,4 +19,10 @@ public interface ProductService {
 	void updateProduct(Product product);
 
 	void deleteProduct(int productId);
+	
+	List<Detail> getAllDetails();
+
+	List<Subdetail> getAllSubDetails();
+
+	List<Subdetail> getSubDetailsByProductId(int productId);
 }

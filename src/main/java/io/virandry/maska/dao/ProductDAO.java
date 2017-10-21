@@ -1,7 +1,6 @@
 package io.virandry.maska.dao;
 
 import java.util.List;
-import io.virandry.maska.model.Article;
 import io.virandry.maska.model.Product;
 
 public interface ProductDAO {

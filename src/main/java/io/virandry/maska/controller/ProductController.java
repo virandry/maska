@@ -8,17 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.virandry.maska.model.Article;
 import io.virandry.maska.model.Product;
 import io.virandry.maska.model.ProductFilter;
+import io.virandry.maska.model.Subdetail;
 import io.virandry.maska.service.ProductService;
 
 @RestController
@@ -50,5 +48,11 @@ public class ProductController {
 	public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id) {
 		Product product = productService.getProductById(id);
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
+	}
+	
+	@GetMapping("product/{id}/details")
+	public ResponseEntity<List<Subdetail>> getSubDetailsById(@PathVariable("id") Integer id) {
+		List<Subdetail> subdetails = productService.getSubDetailsByProductId(id);
+		return new ResponseEntity<List<Subdetail>>(subdetails, HttpStatus.OK);
 	}
 }

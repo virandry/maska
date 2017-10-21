@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import io.virandry.maska.model.Article;
 
 public class RestClientUtil {
+	
 	public void getArticleByIdDemo() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);

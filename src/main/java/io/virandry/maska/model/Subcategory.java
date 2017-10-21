@@ -6,19 +6,14 @@ import java.util.ArrayList;
 // Generated Oct 16, 2017 9:41:25 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +35,7 @@ public class Subcategory implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private String subCategoryId;
 	private String subCategoryName;
-	private String categoryId;
+	private Category category;
 	private String modifiedBy;
 	private Date modifiedTime;
 	private int isActive;
@@ -48,16 +43,6 @@ public class Subcategory implements java.io.Serializable {
 	private List<Product> products = new ArrayList<>();
 
 	public Subcategory() {
-	}
-
-	public Subcategory(String subCategoryId, String subCategoryName, String categoryId, String modifiedBy,
-			Date modifiedTime, int isActive) {
-		this.subCategoryId = subCategoryId;
-		this.subCategoryName = subCategoryName;
-		this.categoryId = categoryId;
-		this.modifiedBy = modifiedBy;
-		this.modifiedTime = modifiedTime;
-		this.isActive = isActive;
 	}
 
 	@Id
@@ -77,15 +62,6 @@ public class Subcategory implements java.io.Serializable {
 
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
-	}
-
-	@Column(name = "category_id", nullable = false, length = 10)
-	public String getCategoryId() {
-		return this.categoryId;
-	}
-
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	@Column(name = "modified_by", nullable = false, length = 100)
@@ -123,6 +99,16 @@ public class Subcategory implements java.io.Serializable {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id", nullable = false)
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }

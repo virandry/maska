@@ -4,13 +4,13 @@ public class ProductFilter {
 	private String sortBy;
 	private String subCategoryId;
 	private String currencyId;
-	private String isActive;
+	private int isActive;
 
 	public ProductFilter() {
 		super();
 	}
 
-	public ProductFilter(String sortBy, String subCategoryId, String currencyId, String isActive) {
+	public ProductFilter(String sortBy, String subCategoryId, String currencyId, int isActive) {
 		super();
 		this.sortBy = sortBy;
 		this.subCategoryId = subCategoryId;
@@ -42,11 +42,11 @@ public class ProductFilter {
 		this.currencyId = currencyId;
 	}
 
-	public String getIsActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 

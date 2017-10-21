@@ -16,7 +16,7 @@ public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
 	@Override
 	public List<Product> getAllProducts() {
 		String hql = "FROM Product prdc ORDER BY prdc.productId";
-		return (List<Product>) entityManager.createQuery(hql).getResultList();
+		return entityManager.createQuery(hql).getResultList();
 	}
 
 	@Override
@@ -34,7 +34,6 @@ public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
 		Product prdc = getProductById(product.getProductId());
 		prdc.setProductName(product.getProductName());
 		prdc.setProductDesc(product.getProductDesc());
-		prdc.setCurrencyId(product.getCurrencyId());
 		prdc.setIsActive(product.getIsActive());
 		prdc.setModifiedBy(product.getModifiedBy());
 		prdc.setModifiedTime(new Date());

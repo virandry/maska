@@ -6,8 +6,8 @@ import java.math.BigInteger;
 // Generated Oct 16, 2017 9:41:25 PM by Hibernate Tools 5.2.5.Final
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +16,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -28,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name = "product", catalog = "aivindb")
-@JsonIgnoreProperties({ "modifiedBy", "modifiedTime" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "modifiedBy", "modifiedTime" })
 public class Product implements java.io.Serializable {
 
 	/**
@@ -38,9 +39,8 @@ public class Product implements java.io.Serializable {
 	private Integer productId;
 	private String productName;
 	private String productDesc;
-	// private String subCategoryId;
 	private BigInteger price;
-	private String currencyId;
+	private Currency currency;
 	private String modifiedBy;
 	private Date modifiedTime;
 	private int isActive;
@@ -48,7 +48,11 @@ public class Product implements java.io.Serializable {
 	private Integer quantity;
 	private Integer preorderQuantity;
 	private Subcategory subcategory;
-
+	@JsonIgnore
+	private List<Subdetail> subdetails;
+	@JsonIgnore
+	private List<Orderdetail> orderdetails;
+	
 	public Product() {
 	}
 
@@ -82,14 +86,6 @@ public class Product implements java.io.Serializable {
 		this.productDesc = productDesc;
 	}
 
-	/*
-	 * @Column(name = "sub_category_id", nullable = false, length = 10) public
-	 * String getSubCategoryId() { return this.subCategoryId; }
-	 * 
-	 * public void setSubCategoryId(String subCategoryId) { this.subCategoryId =
-	 * subCategoryId; }
-	 */
-
 	@Column(name = "price", nullable = false)
 	public BigInteger getPrice() {
 		return this.price;
@@ -97,15 +93,6 @@ public class Product implements java.io.Serializable {
 
 	public void setPrice(BigInteger price) {
 		this.price = price;
-	}
-
-	@Column(name = "currency_id", nullable = false, length = 10)
-	public String getCurrencyId() {
-		return this.currencyId;
-	}
-
-	public void setCurrencyId(String currencyId) {
-		this.currencyId = currencyId;
 	}
 
 	@Column(name = "modified_by", nullable = false, length = 100)
@@ -152,15 +139,7 @@ public class Product implements java.io.Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}//
-	// @Column(name = "sub_category_id", nullable = false, length = 10)
-	// public String getSubCategoryId() {
-	// return this.subCategoryId;
-	// }
-	//
-	// public void setSubCategoryId(String subCategoryId) {
-	// this.subCategoryId = subCategoryId;
-	// }
+	}
 
 	@Column(name = "preorder_quantity")
 	public Integer getPreorderQuantity() {
@@ -179,6 +158,34 @@ public class Product implements java.io.Serializable {
 
 	public void setSubcategory(Subcategory subcategory) {
 		this.subcategory = subcategory;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "currency_id", nullable = false)
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public List<Subdetail> getSubdetails() {
+		return subdetails;
+	}
+
+	public void setSubdetails(List<Subdetail> subdetails) {
+		this.subdetails = subdetails;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	public List<Orderdetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<Orderdetail> orderdetails) {
+		this.orderdetails = orderdetails;
 	}
 
 }

@@ -3,8 +3,6 @@ package io.virandry.maska.dao.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
 import io.virandry.maska.dao.AbstractDAO;
 import io.virandry.maska.dao.ArticleDAO;
 import io.virandry.maska.model.Article;
@@ -21,7 +19,7 @@ public class ArticleDAOImpl extends AbstractDAO implements ArticleDAO {
 	@Override
 	public List<Article> getAllArticles() {
 		String hql = "FROM Article as atcl ORDER BY atcl.articleId";
-		return (List<Article>) entityManager.createQuery(hql).getResultList();
+		return entityManager.createQuery(hql).getResultList();
 	}
 
 	@Override

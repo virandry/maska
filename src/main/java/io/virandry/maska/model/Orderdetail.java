@@ -30,7 +30,6 @@ public class Orderdetail implements java.io.Serializable {
 
 	private Integer orderDetailId;
 	private Product product;
-	private String subCategoryName;
 	private String subDetailIdOne;
 	private String subDetailIdTwo;
 	private String subDetailIdThree;
@@ -60,15 +59,6 @@ public class Orderdetail implements java.io.Serializable {
 
 	public void setOrderDetailId(Integer orderDetailId) {
 		this.orderDetailId = orderDetailId;
-	}
-
-	@Column(name = "sub_category_name", nullable = false, length = 100)
-	public String getSubCategoryName() {
-		return this.subCategoryName;
-	}
-
-	public void setSubCategoryName(String subCategoryName) {
-		this.subCategoryName = subCategoryName;
 	}
 
 	@Column(name = "sub_detail_id_one", length = 10)

@@ -27,7 +27,7 @@ public class Order implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer orderId;
-
+	private String username;
 	private Currency currency;
 	private BigInteger priceTotal;
 	private Shipping shipping;
@@ -137,6 +137,15 @@ public class Order implements java.io.Serializable {
 
 	public void setShipping(Shipping shipping) {
 		this.shipping = shipping;
+	}
+
+	@Column(name = "username", nullable = false)
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

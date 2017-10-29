@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "modifiedBy", "modifiedTime" })
 public class Userauth implements java.io.Serializable {
 
-	private int username;
+	private String username;
 	private String firstname;
 	private String lastname;
 	private UserRole userRole;
@@ -38,11 +38,11 @@ public class Userauth implements java.io.Serializable {
 
 	@Id
 	@Column(name = "username", unique = true, nullable = false)
-	public int getUsername() {
+	public String getUsername() {
 		return this.username;
 	}
 
-	public void setUsername(int username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 

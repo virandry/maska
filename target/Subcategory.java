@@ -55,7 +55,6 @@ public class Subcategory implements java.io.Serializable {
 	}
 
 	@Id
-
 	@Column(name = "sub_category_id", unique = true, nullable = false, length = 10)
 	public String getSubCategoryId() {
 		return this.subCategoryId;
@@ -112,7 +111,7 @@ public class Subcategory implements java.io.Serializable {
 		this.isActive = isActive;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "subcategory")
+	@OneTolMany(fetch = FetchType.LAZY, mappedBy = "subcategory")
 	public Set getProducts() {
 		return this.products;
 	}

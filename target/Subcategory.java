@@ -111,7 +111,7 @@ public class Subcategory implements java.io.Serializable {
 		this.isActive = isActive;
 	}
 
-	@OneTolMany(fetch = FetchType.LAZY, mappedBy = "subcategory")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "subcategory")
 	public Set getProducts() {
 		return this.products;
 	}
